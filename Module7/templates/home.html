@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+{% comment %} might not need this {% endcomment %}
+    {% load static %}
+    <script src="{% static 'website/js/app.js' %}" type = "text/javascript"></script>  
+  <h1 id = "title">Dictionary</h1>
+  Welcome, {{ user.username }}
+  <p><a href="{% url 'logout' %}">Log Out</a></p>
+{% else %}
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">Log In</a>
+  <a href="{% url 'register' %}">Register</a>
+{% endif %}
+<br>
+<form action = "word_lookup" method = "GET" id = "word_lookup">
+        <input type = "text" name = "target_word" id = "target_word">
+        <input type = "submit" value = "Search" id = "searchDictionary">
+</form>
+{% endblock %}

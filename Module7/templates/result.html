@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <form action = "word_lookup" method = "GET" id = "word_lookup">
+        <input type = "text" name = "target_word" id = "target_word">
+        <input type = "submit" value = "Search" id = "searchDictionary">
+    </form>
+    <form action = "/" method = "GET" id = "word_lookup">
+        <input type = "submit" value = "Home Page" id = "homeRedirect">
+    </form>
+    {% if notFound %}
+        <div>No dictionary results found for {{ word }}</div>
+    {% else %}
+        <div id = "sound">
+            Phonetic spelling: {{ phoneticSpelling }}
+            <br>
+            <audio controls>
+                <source src = "{{ audioSource }}" type="audio/mpeg">Your browser does not support audio.
+            </audio>
+        </div>
+
+        <div id = "definitions">
+            {{ listDefinitions | safe }}
+        </div>
+
+    {% endif %}
+{% endblock %}

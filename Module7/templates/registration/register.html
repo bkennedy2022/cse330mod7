@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<h2>Register</h2>
+<link rel="stylesheet" href="styles.css">
+<form method="post" action = "registering">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <label for = "username">Username: </label>
+  <input type = "text" name = "username" id = "username">
+  <br>
+  <br>
+  <label for = "username">Email: </label>
+  <input type = "text" name = "email" id = "email">
+  <br>
+  <br>
+  <label for = "password">Password: </label>
+  <input type = "text" name = "password" id = "password">
+  <br>
+  <br>
+  <button type="submit">Register</button>
+</form>
+{% endblock %}
